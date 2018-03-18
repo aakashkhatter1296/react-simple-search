@@ -17,9 +17,12 @@ class App extends Component {
 				cities: cities
 			});
 		}
+		// constructing the regex string for case-insensitive matching
+		var regex = new RegExp(_.escapeRegExp(filterString), "i");
 		this.setState({
 			cities: _.filter(cities, city => {
-				return city.city.match(filterString);
+				//console.log(city.city + " = " + city.city.match(regex));
+				return city.city.match(regex);
 			})
 		});
 	}
