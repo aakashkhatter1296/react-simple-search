@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { cities } from "../assets/cities-50k";
+import { cities } from "../assets/cities-100";
 import SearchBar from "./search_bar";
 import CityList from "./cities_list";
 import _ from "lodash";
@@ -7,7 +7,10 @@ import _ from "lodash";
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { cities: cities };
+		this.state = {
+			cities: cities,
+			filterString: ""
+		};
 	}
 
 	// Function to search the list, and put the results into the state
@@ -19,12 +22,23 @@ class App extends Component {
 		}
 		// constructing the regex string for case-insensitive matching
 		var regex = new RegExp(_.escapeRegExp(filterString), "i");
-		this.setState({
-			cities: _.filter(cities, city => {
-				//console.log(city.city + " = " + city.city.match(regex));
-				return city.city.match(regex);
-			})
-		});
+
+		// Use filtered array to compute the next filtered array in case of addition of a character
+		if (filterString.length < this.state.filterString.length) {
+			this.setState({
+				cities: _.filter(cities, city => {
+					return city.city.match(regex);
+				})
+			});
+		} else {
+			// Use the original array to compute the next filtered array in case of deletion of characters
+			this.setState({
+				cities: _.filter(this.state.cities, city => {
+					return city.city.match(regex);
+				})
+			});
+		}
+		this.setState({ filterString: filterString });
 	}
 
 	render() {
