@@ -1,12 +1,12 @@
 import React from "react";
-import ListDetail from "./list_detail";
+import CityListItem from "./city_list_item";
 
 const CityList = props => {
-	const listDetailItems = props.cities.map(obj => {
-		return <ListDetail key={obj.index} title={obj.city} />;
+	const cityListItems = props.cities.map(obj => {
+		return <CityListItem key={obj.index} title={obj.city} />;
 	});
 
-	return <ul>{listDetailItems}</ul>;
+	return <ul>{cityListItems}</ul>;
 };
 
 export default CityList;
