@@ -6,7 +6,7 @@ class SearchBar extends Component {
 		this.state = { term: "" };
 	}
 
-	// Funciton called when the search term is changed.
+	// Function called when the search term is changed.
 	// Sets the current term in the state and calls the callback funtion to return the current search term
 	onInputChange(term) {
 		this.setState({ term });

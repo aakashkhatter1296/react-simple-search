@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { cities } from "../assets/cities-100";
+import { cities } from "../assets/cities-50k";
 import SearchBar from "./search_bar";
 import CityList from "./cities_list";
 import _ from "lodash";
