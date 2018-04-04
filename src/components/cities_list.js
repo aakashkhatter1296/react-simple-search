@@ -1,12 +1,32 @@
 import React from "react";
 import CityListItem from "./city_list_item";
+import { List } from "react-virtualized";
 
 const CityList = props => {
-	const cityListItems = props.cities.map(obj => {
-		return <CityListItem key={obj.index} title={obj.city} />;
-	});
+  function rowRenderer({
+    key, // Unique key within array of rows
+    index, // Index of row within collection
+    isScrolling, // The List is currently being scrolled
+    isVisible, // This row is visible within the List (eg it is not an overscanned row)
+    style // Style object to be applied to row (to position it)
+  }) {
+    return (
+      <div key={key} style={style}>
+        <CityListItem key={index} title={props.cities[index].city} />
+      </div>
+    );
+  }
 
-	return <ul>{cityListItems}</ul>;
+  return (
+    <List
+      height={1000}
+      rowCount={props.cities.length}
+      rowHeight={20}
+      width={800}
+      rowRenderer={rowRenderer}
+      overscanRowCount={10}
+    />
+  );
 };
 
 export default CityList;
