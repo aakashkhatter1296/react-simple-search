@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { cities } from "../assets/cities-10k";
+import { cities } from "../assets/cities-50k";
 import SearchBar from "./search_bar";
 import CityList from "./cities_list";
 import _ from "lodash";
@@ -48,9 +48,9 @@ class App extends Component {
 		}, 300);
 
 		return (
-			<div className="App">
+			<div className="App container">
 				<SearchBar onSearchTermChange={term => filter(term)} />
-				<CityList cities={this.state.cities} />
+				<CityList cities={this.state.cities}/>
 			</div>
 		);
 	}

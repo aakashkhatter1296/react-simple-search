@@ -19,9 +19,10 @@ const CityList = props => {
 
   return (
     <List
+      className="list-group"
       height={1000}
       rowCount={props.cities.length}
-      rowHeight={20}
+      rowHeight={40}
       width={800}
       rowRenderer={rowRenderer}
       overscanRowCount={10}
